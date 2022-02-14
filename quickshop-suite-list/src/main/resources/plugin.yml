@@ -1,0 +1,5 @@
+name: qssuite-list
+version: '${project.version}'
+main: com.ghostchu.quickshopsuite.list.QuickShopSuiteList
+api-version: 1.13
+depend: [QuickShop-Hikari]

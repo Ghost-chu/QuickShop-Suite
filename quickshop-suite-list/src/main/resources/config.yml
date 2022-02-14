@@ -1,0 +1,13 @@
+lang:
+  desc: "Lists all shops for myself or others."
+  prefix: "&b[&aQuickShop&b]&6 Shop list &eTotal: {total}"
+  coord: "&a{num}. &e{name}"
+  nothing: "&eSorry, but you didn't have any shop."
+  hover:
+    - "&e{name}"
+    - "&7{world}, {x}, {y}, {z}"
+    - "&bPrice &e{name} &b - &6{price} per stack"
+    - "&aThis shop is &b{type} &aitems"
+  selling: "SELLING"
+  buying: "BUYING"
+
