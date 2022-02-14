@@ -1,6 +1,10 @@
 # QuickShop-Suite
 Power the QuickShop-Hikari with addons! This repo contains addons that from QuickShop-Reremake. And some dedicated addons for QuickShop-Hikari.
 
+## Downloads
+
+[ci.codemc.io](https://ci.codemc.io/job/Ghost-chu/job/QuickShop-Suite/)
+
 ## List
 
 Added a `/qs list` subcommand to allow player check the shops they're created at.
