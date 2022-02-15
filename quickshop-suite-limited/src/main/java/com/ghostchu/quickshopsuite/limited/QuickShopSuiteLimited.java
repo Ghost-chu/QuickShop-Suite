@@ -33,7 +33,7 @@ public final class QuickShopSuiteLimited extends JavaPlugin implements Listener 
         this.container = CommandContainer.builder()
                 .prefix("limit")
                 .permission("quickshop.limited")
-                .description(LegacyComponentSerializer.legacySection().deserialize(getConfig().getString("command-description")))
+                .description((locale)->LegacyComponentSerializer.legacySection().deserialize(getConfig().getString("command-description")))
                 .executor(new ShopLimitedCommand(api))
                 .build();
         QuickShop.getInstance().getCommandManager().registerCmd(container);
