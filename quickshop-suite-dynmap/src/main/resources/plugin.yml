@@ -1,0 +1,5 @@
+name: qssuite-dynmap
+version: '${project.version}'
+main: com.ghostchu.quickshopsuite.dynmap.QuickShopSuiteDynmap
+api-version: 1.13
+depend: [dynmap, QuickShop-Hikari]

@@ -10,10 +10,10 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>quickshop-suite-limited</artifactId>
+    <artifactId>quickshop-suite-dynmap</artifactId>
     <packaging>jar</packaging>
 
-    <name>quickshop-suite-limited</name>
+    <name>quickshop-suite-dynmap</name>
 
     <build>
         <plugins>
@@ -47,6 +47,10 @@
             <id>codemc-snapshots</id>
             <url>https://repo.codemc.io/repository/maven-snapshots/</url>
         </repository>
+        <repository>
+            <id>dynmap-repo</id>
+            <url>https://repo.mikeprimm.com/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -61,6 +65,12 @@
             <artifactId>quickshop-suite-common</artifactId>
             <version>${parent.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>us.dynmap</groupId>
+            <artifactId>dynmap-api</artifactId>
+            <version>3.2-beta-1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
