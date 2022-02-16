@@ -13,6 +13,8 @@
     <artifactId>quickshop-suite-common</artifactId>
     <packaging>jar</packaging>
 
+    <name>quickshop-suite-common</name>
+
     <build>
         <plugins>
             <plugin>
