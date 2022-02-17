@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.ghostchu.quickshopsuite</groupId>
         <artifactId>quickshop-suite</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>quickshop-suite-list</artifactId>
