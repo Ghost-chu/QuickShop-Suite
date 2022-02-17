@@ -46,7 +46,6 @@ public class ListCommand implements CommandHandler<Player> {
             Shop shop = shops.get(i);
             String message = plugin.getConfig().getString("lang.coord").replace("{num}", String.valueOf(i + 1)).replace("{name}", Util.getItemStackName(shop.getItem()));
             Component component = LegacyComponentSerializer.legacySection().deserialize(message);
-
             List<String> lores = new ArrayList<>();
             String title = null;
             List<String> hover = plugin.getConfig().getStringList("lang.hover");
@@ -58,14 +57,12 @@ public class ListCommand implements CommandHandler<Player> {
                 }
                 lores.add(format(shop, hover.get(j)));
             }
-
             ItemStack stack = new ItemStack(Material.STONE);
             ItemMeta meta = stack.getItemMeta();
             meta.setDisplayName(title);
             meta.setLore(lores);
             stack.setItemMeta(meta);
-            component.hoverEvent(QuickShop.getInstance().getPlatform().getItemStackHoverEvent(stack));
-            plugin.getAudience().player(commandSender).sendMessage(component);
+            plugin.getAudience().player(commandSender).sendMessage(component.hoverEvent(QuickShop.getInstance().getPlatform().getItemStackHoverEvent(stack).asHoverEvent()));
         }
     }
 
