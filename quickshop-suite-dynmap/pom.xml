@@ -70,7 +70,8 @@
             <groupId>us.dynmap</groupId>
             <artifactId>dynmap-api</artifactId>
             <version>3.2-beta-1</version>
-            <scope>provided</scope>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/Dynmap-3.4-beta-2-spigot.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

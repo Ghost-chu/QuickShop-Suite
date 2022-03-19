@@ -44,7 +44,7 @@ public class ListCommand implements CommandHandler<Player> {
         }
         for (int i = 0; i < shops.size(); i++) {
             Shop shop = shops.get(i);
-            String message = plugin.getConfig().getString("lang.coord").replace("{num}", String.valueOf(i + 1)).replace("{name}", Util.getItemStackName(shop.getItem()));
+            String message = plugin.getConfig().getString("lang.coord").replace("{num}", String.valueOf(i + 1)).replace("{name}", LegacyComponentSerializer.legacySection().serialize(Util.getItemStackName(shop.getItem())));
             Component component = LegacyComponentSerializer.legacySection().deserialize(message);
             List<String> lores = new ArrayList<>();
             String title = null;
@@ -67,7 +67,7 @@ public class ListCommand implements CommandHandler<Player> {
     }
 
     private String format(Shop shop, String raw) {
-        return ChatColor.translateAlternateColorCodes('&', raw.replace("{name}", Util.getItemStackName(shop.getItem()))
+        return ChatColor.translateAlternateColorCodes('&', raw.replace("{name}", LegacyComponentSerializer.legacySection().serialize(Util.getItemStackName(shop.getItem())))
                 .replace("{world}", shop.getLocation().getWorld().getName())
                 .replace("{x}", String.valueOf(shop.getLocation().getBlockX()))
                 .replace("{y}", String.valueOf(shop.getLocation().getBlockY()))
