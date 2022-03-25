@@ -98,7 +98,7 @@ public final class QuickShopSuiteDynmap extends JavaPlugin implements Listener {
                 return;
             }
             Marker marker = quickShopSet.createMarker(shop.getRuntimeRandomUniqueId().toString(),
-                    Util.getItemStackName(shop.getItem()) + " - " + (shop.isSelling() ? getConfig().getString("lang.selling") : getConfig().getString("lang.buying")) + " - " + shop.getPrice()
+                    LegacyComponentSerializer.legacySection().serialize(Util.getItemStackName(shop.getItem())) + " - " + (shop.isSelling() ? getConfig().getString("lang.selling") : getConfig().getString("lang.buying")) + " - " + shop.getPrice()
                     , shop.getLocation().getWorld().getName()
                     , shop.getLocation().getBlockX()
                     , shop.getLocation().getBlockY()
