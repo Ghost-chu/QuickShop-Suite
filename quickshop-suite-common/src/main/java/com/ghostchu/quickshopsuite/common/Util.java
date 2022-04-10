@@ -2,7 +2,6 @@ package com.ghostchu.quickshopsuite.common;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
@@ -33,7 +32,6 @@ public class Util {
      * @param text the text
      * @return parsed text
      */
-    @NotNull
     public static String parseColours(String text) {
         if(text == null || text.isEmpty())
             return "";

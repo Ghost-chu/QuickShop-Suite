@@ -1,11 +1,12 @@
 package com.ghostchu.quickshopsuite.list;
 
+
 import com.ghostchu.quickshop.QuickShop;
 import com.ghostchu.quickshop.api.command.CommandHandler;
 import com.ghostchu.quickshop.api.shop.Shop;
+import com.ghostchu.quickshop.shade.net.kyori.adventure.text.Component;
+import com.ghostchu.quickshop.shade.net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import com.ghostchu.quickshop.util.Util;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

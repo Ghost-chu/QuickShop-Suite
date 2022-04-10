@@ -6,9 +6,9 @@ import com.ghostchu.quickshop.api.command.CommandContainer;
 import com.ghostchu.quickshop.api.event.CalendarEvent;
 import com.ghostchu.quickshop.api.event.ShopPurchaseEvent;
 import com.ghostchu.quickshop.api.shop.Shop;
+import com.ghostchu.quickshop.shade.net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import com.ghostchu.quickshop.util.MsgUtil;
 import com.ghostchu.quickshop.util.Util;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -33,7 +33,7 @@ public final class QuickShopSuiteLimited extends JavaPlugin implements Listener 
         this.container = CommandContainer.builder()
                 .prefix("limit")
                 .permission("quickshop.limited")
-                .description((locale)->LegacyComponentSerializer.legacySection().deserialize(getConfig().getString("command-description")))
+                .description((locale)-> LegacyComponentSerializer.legacySection().deserialize(getConfig().getString("command-description")))
                 .executor(new ShopLimitedCommand(api))
                 .build();
         QuickShop.getInstance().getCommandManager().registerCmd(container);
