@@ -15,7 +15,6 @@ public final class QuickShopSuiteList extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        com.ghostchu.quickshop.
         audience = BukkitAudiences.create(this);
         saveDefaultConfig();
         reloadConfig();
