@@ -2,9 +2,9 @@ package com.ghostchu.quickshopsuite.list;
 
 import com.ghostchu.quickshop.api.QuickShopAPI;
 import com.ghostchu.quickshop.api.command.CommandContainer;
-import com.ghostchu.quickshop.shade.net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import com.ghostchu.quickshop.shade.net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import com.ghostchu.quickshopsuite.common.Util;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
