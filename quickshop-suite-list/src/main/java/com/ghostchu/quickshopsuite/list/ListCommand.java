@@ -6,11 +6,9 @@ import com.ghostchu.quickshop.api.command.CommandHandler;
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.util.Util;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -45,26 +43,22 @@ public class ListCommand implements CommandHandler<Player> {
         for (int i = 0; i < shops.size(); i++) {
             Shop shop = shops.get(i);
             Component component = LegacyComponentSerializer.legacySection().deserialize(plugin.getConfig().getString("lang.coord"));
-            component = component.replaceText(TextReplacementConfig.builder().matchLiteral("{num}").replacement( String.valueOf(i + 1)).build());
-            component = component.replaceText(TextReplacementConfig.builder().matchLiteral("{name}").replacement(Util.getItemStackName(shop.getItem())).build());
+            component = Helper.replaceArgs(component,"{num}", String.valueOf(i + 1));
+            component = Helper.replaceArgs(component,"{name}",Util.getItemStackName(shop.getItem()));
             List<String> hover = plugin.getConfig().getStringList("lang.hover");
             List<Component> description = hover.stream().map(str->LegacyComponentSerializer.legacySection().deserialize(str)).collect(Collectors.toList());
             Component showComponent = Component.empty();
             for (Component component1 : description) {
+                component1 = Helper.replaceArgs(component1, "{name}", Util.getItemStackName(shop.getItem()));
+                component1 = Helper.replaceArgs(component1, "{world}", shop.getLocation().getWorld().getName());
+                component1 = Helper.replaceArgs(component1, "{x}", String.valueOf(shop.getLocation().getBlockX()));
+                component1 = Helper.replaceArgs(component1, "{y}", String.valueOf(shop.getLocation().getBlockY()));
+                component1 = Helper.replaceArgs(component1, "{z}", String.valueOf(shop.getLocation().getBlockZ()));
+                component1 = Helper.replaceArgs(component1, "{price}",QuickShop.getInstance().getEconomy().format(shop.getPrice(), shop.getLocation().getWorld(), shop.getCurrency()));
+                component1 = Helper.replaceArgs(component1, "{type}", shop.isSelling() ? plugin.getConfig().getString("lang.selling") : plugin.getConfig().getString("lang.buying"));
                 showComponent = showComponent.append(component1).append(Component.newline());
             }
             plugin.getAudience().player(commandSender).sendMessage(component.hoverEvent(HoverEvent.showText(showComponent.compact())));
         }
-    }
-
-    private String format(Shop shop, String raw) {
-        return ChatColor.translateAlternateColorCodes('&', raw.replace("{name}", LegacyComponentSerializer.legacySection().serialize(Util.getItemStackName(shop.getItem())))
-                .replace("{world}", shop.getLocation().getWorld().getName())
-                .replace("{x}", String.valueOf(shop.getLocation().getBlockX()))
-                .replace("{y}", String.valueOf(shop.getLocation().getBlockY()))
-                .replace("{z}", String.valueOf(shop.getLocation().getBlockZ()))
-                .replace("{price}", QuickShop.getInstance().getEconomy().format(shop.getPrice(), shop.getLocation().getWorld(), shop.getCurrency()))
-                .replace("{type}", shop.isSelling() ? plugin.getConfig().getString("lang.selling") : plugin.getConfig().getString("lang.buying")));
-
     }
 }
