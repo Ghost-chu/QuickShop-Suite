@@ -48,7 +48,9 @@ public class ListCommand implements CommandHandler<Player> {
             List<String> hover = plugin.getConfig().getStringList("lang.hover");
             List<Component> description = hover.stream().map(str -> LegacyComponentSerializer.legacyAmpersand().deserialize(str)).collect(Collectors.toList());
             Component showComponent = Component.empty();
-            for (Component component1 : description) {
+
+            for (int j = 0; j < description.size(); j++) {
+                Component component1 = description.get(j);
                 component1 = Helper.replaceArgs(component1, "{name}", Util.getItemStackName(shop.getItem()));
                 component1 = Helper.replaceArgs(component1, "{world}", shop.getLocation().getWorld().getName());
                 component1 = Helper.replaceArgs(component1, "{x}", String.valueOf(shop.getLocation().getBlockX()));
@@ -56,7 +58,9 @@ public class ListCommand implements CommandHandler<Player> {
                 component1 = Helper.replaceArgs(component1, "{z}", String.valueOf(shop.getLocation().getBlockZ()));
                 component1 = Helper.replaceArgs(component1, "{price}", QuickShop.getInstance().getEconomy().format(shop.getPrice(), shop.getLocation().getWorld(), shop.getCurrency()));
                 component1 = Helper.replaceArgs(component1, "{type}", shop.isSelling() ? plugin.getConfig().getString("lang.selling") : plugin.getConfig().getString("lang.buying"));
-                showComponent = showComponent.append(component1).append(Component.newline());
+                showComponent = showComponent.append(component1);
+                if (j != description.size() - 1)
+                    showComponent = showComponent.append(Component.newline());
             }
             plugin.getAudience().player(commandSender).sendMessage(component.hoverEvent(HoverEvent.showText(showComponent.compact())));
         }
