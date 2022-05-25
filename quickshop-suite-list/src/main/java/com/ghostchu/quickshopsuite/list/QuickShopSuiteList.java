@@ -24,7 +24,7 @@ public final class QuickShopSuiteList extends JavaPlugin {
         api.getCommandManager().registerCmd(CommandContainer.builder().executor(new ListCommand(this))
                 .permission("quickshop.list")
                 .prefix("list")
-                .description((locale)->LegacyComponentSerializer.legacySection().deserialize(getConfig().getString("lang.desc")))
+                .description((locale)-> LegacyComponentSerializer.legacySection().deserialize(getConfig().getString("lang.desc")))
                 .build());
     }
 

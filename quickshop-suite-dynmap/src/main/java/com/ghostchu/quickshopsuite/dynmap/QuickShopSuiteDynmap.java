@@ -6,6 +6,7 @@ import com.ghostchu.quickshop.api.event.ShopDeleteEvent;
 import com.ghostchu.quickshop.api.event.ShopPriceChangeEvent;
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.util.Util;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -97,7 +98,7 @@ public final class QuickShopSuiteDynmap extends JavaPlugin implements Listener {
                 return;
             }
             Marker marker = quickShopSet.createMarker(shop.getRuntimeRandomUniqueId().toString(),
-                    Util.getItemStackName(shop.getItem()) + " - " + (shop.isSelling() ? getConfig().getString("lang.selling") : getConfig().getString("lang.buying")) + " - " + shop.getPrice()
+                    LegacyComponentSerializer.legacySection().serialize(Util.getItemStackName(shop.getItem())) + " - " + (shop.isSelling() ? getConfig().getString("lang.selling") : getConfig().getString("lang.buying")) + " - " + shop.getPrice()
                     , shop.getLocation().getWorld().getName()
                     , shop.getLocation().getBlockX()
                     , shop.getLocation().getBlockY()
@@ -106,7 +107,7 @@ public final class QuickShopSuiteDynmap extends JavaPlugin implements Listener {
             String desc = getConfig().getString("lang.description");
             if (shop.isSelling()) {
                 desc = fillArgs(desc,
-                        ChatColor.stripColor(Util.getItemStackName(shop.getItem())),
+                        ChatColor.stripColor(LegacyComponentSerializer.legacySection().serialize(Util.getItemStackName(shop.getItem()))),
                         Bukkit.getOfflinePlayer(shop.getOwner()).getName(),
                         getConfig().getString("lang.selling"),
                         fillArgs(getConfig().getString("lang.stockdesc"), String.valueOf(shop.getRemainingStock())),
@@ -117,7 +118,7 @@ public final class QuickShopSuiteDynmap extends JavaPlugin implements Listener {
                 );
             } else {
                 desc = fillArgs(desc,
-                        ChatColor.stripColor(Util.getItemStackName(shop.getItem())),
+                        ChatColor.stripColor(LegacyComponentSerializer.legacySection().serialize(Util.getItemStackName(shop.getItem()))),
                         Bukkit.getOfflinePlayer(shop.getOwner()).getName(),
                         getConfig().getString("lang.buying"),
                         fillArgs(getConfig().getString("lang.spacedesc"), String.valueOf(shop.getRemainingSpace())),
