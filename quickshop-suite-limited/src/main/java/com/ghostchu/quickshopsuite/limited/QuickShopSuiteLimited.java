@@ -5,6 +5,7 @@ import com.ghostchu.quickshop.api.QuickShopAPI;
 import com.ghostchu.quickshop.api.command.CommandContainer;
 import com.ghostchu.quickshop.api.event.CalendarEvent;
 import com.ghostchu.quickshop.api.event.ShopPurchaseEvent;
+import com.ghostchu.quickshop.api.event.ShopSuccessPurchaseEvent;
 import com.ghostchu.quickshop.api.shop.Shop;
 import com.ghostchu.quickshop.util.MsgUtil;
 import com.ghostchu.quickshop.util.Util;
@@ -14,6 +15,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -58,8 +60,18 @@ public final class QuickShopSuiteLimited extends JavaPlugin implements Listener 
         if (playerUsedLimit + event.getAmount() > limit) {
             event.getPlayer().sendMessage(ChatColor.RED + MsgUtil.fillArgs(getConfig().getString("reach-the-limit"), String.valueOf(limit - playerUsedLimit), String.valueOf(event.getAmount())));
             event.setCancelled(true,"Trade limit reached");
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void shopPurchaseSuccess(ShopSuccessPurchaseEvent event){
+        Shop shop = event.getShop();
+        ConfigurationSection storage = shop.getExtra(this);
+        if (storage.getInt("limit") < 1) {
             return;
         }
+        int limit = storage.getInt("limit");
+        int playerUsedLimit = storage.getInt("data." + event.getPlayer().getUniqueId(), 0);
         playerUsedLimit += event.getAmount();
         storage.set("data." + event.getPlayer().getUniqueId(), playerUsedLimit);
         shop.setExtra(QuickShopSuiteLimited.instance,storage);
