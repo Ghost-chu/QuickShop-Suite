@@ -1,3 +1,11 @@
+# We're moving!
+
+QuickShop-Suite are migrating into [QuickShop-Hikari main-line](https://github.com/Ghost-chu/QuickShop-Hikari/tree/hikari/addon)!
+
+This repository has been archived!
+
+---
+
 # QuickShop-Suite
 Power the QuickShop-Hikari with addons! This repo contains addons that from QuickShop-Reremake. And some dedicated addons for QuickShop-Hikari.
 
